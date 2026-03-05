@@ -1,0 +1,75 @@
+name: Skill Publish (Gate 4 — merge to main)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'skills/**/*.SKILL.md'
+
+permissions:
+  contents: write
+  id-token: write  # for Workload Identity / Cosign
+
+jobs:
+  publish:
+    name: Generate content_hash + Update marketplace.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compute content hashes for changed skills
+        run: |
+          git diff --name-only HEAD~1 HEAD \
+            | grep '^skills/.*\.SKILL\.md$' \
+            | while read f; do
+                hash=$(python3 -c "
+          import hashlib, sys
+          content = open('$f').read()
+          # Hash the body only (after second ---)
+          parts = content.split('---', 2)
+          body = parts[2] if len(parts) >= 3 else content
+          print(hashlib.sha256(body.encode()).hexdigest())
+          ")
+                echo "Hash for $f: $hash"
+                # Update content_hash field in the SKILL.md frontmatter
+                node scripts/update-hash.js "$f" "$hash"
+              done
+
+      - name: Generate marketplace.json
+        run: node scripts/generate-marketplace.js
+
+      - name: Validate generated marketplace.json
+        run: node -e "
+          const m = require('./.claude-plugin/marketplace.json');
+          if (!m.skills || !Array.isArray(m.skills)) throw new Error('Invalid marketplace.json');
+          console.log('marketplace.json valid —', m.skills.length, 'skills');
+        "
+
+      - name: Commit updated files
+        run: |
+          git config user.name "EnGenAI CI"
+          git config user.email "ci@engenai.app"
+          git add .claude-plugin/marketplace.json skills/**/*.SKILL.md
+          git diff --staged --quiet || git commit -m "chore(ci): update content hashes + marketplace.json [skip ci]"
+          git push origin main
+
+      # Cosign signing is configured once GCP KMS is wired to this repo.
+      # Uncomment when ready:
+      # - name: Sign skills with Cosign (GCP KMS)
+      #   uses: sigstore/cosign-installer@59acb6260d9c0ba8f4a2f9d9b48431a222b68e20  # v3.5.0
+      #   with:
+      #     cosign-release: 'v2.2.4'
+      # - run: |
+      #     for f in skills/**/*.SKILL.md; do
+      #       cosign sign-blob --key gcpkms://projects/engenai-prod/locations/global/keyRings/skills/cryptoKeys/signing "$f"
+      #     done

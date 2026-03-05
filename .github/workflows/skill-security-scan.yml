@@ -1,0 +1,49 @@
+name: Skill Security Scan (Gate 2)
+
+on:
+  pull_request:
+    paths:
+      - 'skills/**/*.SKILL.md'
+
+jobs:
+  security-scan:
+    name: Injection Pattern + Regex Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2f  # v5.3.0
+        with:
+          python-version: '3.11'
+
+      - name: Install scanner
+        run: pip install pyyaml
+
+      - name: Run injection pattern scan on changed skills
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep '^skills/.*\.SKILL\.md$' \
+            | xargs -r python scripts/security-scan.py
+
+  forbidden-pattern-check:
+    name: Forbidden Content Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Check for hardcoded secrets
+        run: |
+          # Check for common secret patterns
+          if grep -rE '(sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{36}|AIza[A-Za-z0-9_-]{35}|AKIA[A-Za-z0-9]{16})' skills/; then
+            echo "ERROR: Hardcoded credentials detected in skill files"
+            exit 1
+          fi
+
+      - name: Check for eval/exec usage
+        run: |
+          if grep -rn 'eval(' skills/ | grep -v '```'; then
+            echo "WARNING: eval() usage detected - manual review required"
+          fi
+          if grep -rn 'exec(' skills/ | grep -v '```'; then
+            echo "WARNING: exec() usage detected - manual review required"
+          fi

@@ -1,0 +1,13 @@
+EnGenAI Skills Marketplace
+Copyright 2026 EnGenAI (EnGen-AI)
+
+This product includes software developed at EnGenAI (https://engenai.app).
+
+---
+
+This repository contains skills (SKILL.md files) contributed by the community
+under the Apache License 2.0. Each skill includes its own author and license
+declarations in the frontmatter.
+
+All contributions require a signed Contributor License Agreement (CLA).
+See CLA.md for details.

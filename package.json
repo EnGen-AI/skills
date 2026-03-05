@@ -1,0 +1,14 @@
+{
+  "name": "engenai-skills",
+  "version": "1.0.0",
+  "description": "EnGenAI Skills Marketplace — vetted, open-source skills for AI agents",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate-skill.js",
+    "generate": "node scripts/generate-marketplace.js",
+    "scan": "python3 scripts/security-scan.py"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

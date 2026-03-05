@@ -1,0 +1,26 @@
+name: Skill Lint (Gate 1)
+
+on:
+  pull_request:
+    paths:
+      - 'skills/**/*.SKILL.md'
+
+jobs:
+  lint:
+    name: YAML Schema + Forbidden Pattern Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate changed skill files
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep '^skills/.*\.SKILL\.md$' \
+            | xargs -r node scripts/validate-skill.js

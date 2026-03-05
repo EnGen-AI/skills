@@ -1,0 +1,252 @@
+{
+  "name": "EnGenAI Skills Marketplace",
+  "description": "Vetted, open-source skills for AI agents built on EnGenAI",
+  "version": "1.0.0",
+  "source": "https://github.com/engenai-platform/engenai-skills",
+  "generated_at": "2026-03-05T21:31:10.180Z",
+  "skills": [
+    {
+      "name": "agent-platform-context",
+      "version": "1.0.0",
+      "description": "EnGenAI agent platform internals — AgentExecutor, mailbox messaging, lead/worker team model, working memory, Celery task infrastructure, and the full execution lifecycle. Reference for platform and agent-aware code.",
+      "category": "context",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "context",
+        "agents",
+        "executor",
+        "memory",
+        "celery",
+        "teams"
+      ],
+      "content_hash": "b85d423292d9c248dd784364e636c661dd4f6dad6c84a784b6664d55fa5eddda",
+      "signed_by": "",
+      "file": "skills/context/agent-platform-context.SKILL.md"
+    },
+    {
+      "name": "backend-context",
+      "version": "1.0.0",
+      "description": "EnGenAI backend conventions — FastAPI patterns, service layer, async DB access, authentication, middleware, and security patterns. Reference for Sophi and any agent working in src/backend/.",
+      "category": "context",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "context",
+        "backend",
+        "fastapi",
+        "python",
+        "database"
+      ],
+      "content_hash": "d6d366ff71ca55a12d84426f74b29b55c1f0144912fe432f2f7485184300b131",
+      "signed_by": "",
+      "file": "skills/context/backend-context.SKILL.md"
+    },
+    {
+      "name": "frontend-context",
+      "version": "1.0.0",
+      "description": "EnGenAI frontend conventions — Next.js 14 App Router patterns, React Flow canvas, Tailwind CSS, Zustand state management, TypeScript strict mode, and component conventions. Reference for Marv and frontend agents.",
+      "category": "context",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "context",
+        "frontend",
+        "nextjs",
+        "react",
+        "tailwind",
+        "typescript"
+      ],
+      "content_hash": "b18886d0d0407b49915af899cf604e044987fde2d2c2edd359869cae50a0efa3",
+      "signed_by": "",
+      "file": "skills/context/frontend-context.SKILL.md"
+    },
+    {
+      "name": "infrastructure-context",
+      "version": "1.0.0",
+      "description": "EnGenAI infrastructure conventions — GCP GKE, ArgoCD GitOps, Terraform, Helm, CI/CD pipeline, K8s deployment patterns, and security hardening requirements. Reference for DevOps and infrastructure agents.",
+      "category": "context",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "context",
+        "infrastructure",
+        "k8s",
+        "gcp",
+        "argocd",
+        "terraform",
+        "cicd"
+      ],
+      "content_hash": "84b9c96bf6847c9886ddf0809fd44993f5bfe70027da53563a9d56579857505b",
+      "signed_by": "",
+      "file": "skills/context/infrastructure-context.SKILL.md"
+    },
+    {
+      "name": "sprint-context",
+      "version": "1.0.0",
+      "description": "EnGenAI sprint workflow — 3-file pattern, TASK_STATUS protocol, definition of done, sprint opening/closing process, and quality gates. Reference for all agents contributing to sprint delivery.",
+      "category": "context",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "context",
+        "sprint",
+        "workflow",
+        "tdd",
+        "task-status"
+      ],
+      "content_hash": "d31d51cc814819f91a37c3bdac6f726206969d3509439504c73567f04b592993",
+      "signed_by": "",
+      "file": "skills/context/sprint-context.SKILL.md"
+    },
+    {
+      "name": "workspace-context",
+      "version": "1.0.0",
+      "description": "EnGenAI platform workspace overview — project identity, tech stack, team structure, terminology, and development principles. Read-only reference for all agents operating in the EnGenAI codebase.",
+      "category": "context",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "context",
+        "workspace",
+        "stack",
+        "conventions"
+      ],
+      "content_hash": "b84e649b2ef6740d2fd35a34a31a308cb647aa172fc4c4a97158e23ef5a9eed2",
+      "signed_by": "",
+      "file": "skills/context/workspace-context.SKILL.md"
+    },
+    {
+      "name": "code-review",
+      "version": "2.0.0",
+      "description": "Two-stage code review process for EnGenAI. Stage 1 checks spec compliance, Stage 2 checks code quality. Stage 2 cannot begin until Stage 1 passes. Based on the Superpowers research pattern.",
+      "category": "development",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "review",
+        "quality",
+        "spec-compliance",
+        "code-quality"
+      ],
+      "content_hash": "5a926d843fcbc7ee74b9a922024a6d08e078bf17c5205495fd81e4e0bf553e0f",
+      "signed_by": "",
+      "file": "skills/development/code-review.SKILL.md"
+    },
+    {
+      "name": "tdd-workflow",
+      "version": "2.0.0",
+      "description": "Test-Driven Development workflow for EnGenAI backend and frontend code. Write failing tests first, then implement, then verify with evidence. Never claim \"done\" without running the verification command.",
+      "category": "development",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "tdd",
+        "testing",
+        "pytest",
+        "jest",
+        "verification"
+      ],
+      "content_hash": "f454e63d3b94fc9de73714746d9c1cb917ec097e191833eafc4b2ebae8da466f",
+      "signed_by": "",
+      "file": "skills/development/tdd-workflow.SKILL.md"
+    },
+    {
+      "name": "deploy-to-dev",
+      "version": "3.0.0",
+      "description": "Deploy to dev.engenai.app via GitOps CI/CD pipeline. Push to sprint branch triggers GitHub Actions → builds images → updates gitops/dev → ArgoCD syncs. Never push directly to develop or gitops branches.",
+      "category": "devops",
+      "trust_tier": "official",
+      "risk_level": "medium",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "deploy",
+        "cicd",
+        "argocd",
+        "gitops",
+        "kubernetes"
+      ],
+      "content_hash": "0abba2d843690f5e84f9039ad28a3545d1ead96f6fc129bf2790b259a5409b71",
+      "signed_by": "",
+      "file": "skills/devops/deploy-to-dev.SKILL.md"
+    },
+    {
+      "name": "sprint-closing",
+      "version": "2.0.0",
+      "description": "Close an EnGenAI sprint with the mandatory 6-phase process. Every sprint must be fully documented and Amad must give explicit approval before any closure docs are committed and pushed.",
+      "category": "devops",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "sprint",
+        "closure",
+        "documentation",
+        "process"
+      ],
+      "content_hash": "f49294f44eaf4572438e23b4b8857df0bfbc23ac265098a1aa150f71e53cf312",
+      "signed_by": "",
+      "file": "skills/devops/sprint-closing.SKILL.md"
+    },
+    {
+      "name": "security-context",
+      "version": "1.0.0",
+      "description": "EnGenAI security model — OWASP Top 10 checklist, secure coding rules, the Lethal Trifecta threat model, forbidden patterns, and required security controls for all agents and skills. Mandatory reference for security reviews.",
+      "category": "security",
+      "trust_tier": "official",
+      "risk_level": "low",
+      "capabilities_required": [],
+      "author": "engenai",
+      "license": "Apache-2.0",
+      "updated": "2026-03-05",
+      "tags": [
+        "context",
+        "security",
+        "owasp",
+        "threat-model",
+        "secure-coding"
+      ],
+      "content_hash": "6d33b62786589e2d40ec26e05e1ae70cf728e76d3ef49695e50454792b24e493",
+      "signed_by": "",
+      "file": "skills/security/security-context.SKILL.md"
+    }
+  ]
+}

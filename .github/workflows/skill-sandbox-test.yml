@@ -1,0 +1,64 @@
+name: Skill Sandbox Test (Gate 3)
+
+on:
+  pull_request:
+    paths:
+      - 'skills/**/*.SKILL.md'
+
+jobs:
+  schema-validation:
+    name: Full Schema Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate all skills in PR
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep '^skills/.*\.SKILL\.md$' \
+            | xargs -r node scripts/validate-skill.js --strict
+
+      - name: Check capabilities_required is declared
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep '^skills/.*\.SKILL\.md$' \
+            | while read f; do
+                if ! grep -q 'capabilities_required:' "$f"; then
+                  echo "ERROR: $f missing capabilities_required"
+                  exit 1
+                fi
+              done
+
+      - name: Check safety_constraints is declared
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep '^skills/.*\.SKILL\.md$' \
+            | while read f; do
+                if ! grep -q 'safety_constraints:' "$f"; then
+                  echo "ERROR: $f missing safety_constraints"
+                  exit 1
+                fi
+              done
+
+  marketplace-json-dry-run:
+    name: Marketplace JSON Dry Run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate marketplace.json (dry run)
+        run: node scripts/generate-marketplace.js --dry-run
