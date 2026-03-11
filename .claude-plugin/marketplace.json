@@ -2,7 +2,7 @@
   "name": "EnGenAI Skills Marketplace",
   "description": "Vetted, open-source skills for AI agents built on EnGenAI",
   "version": "1.0.0",
-  "source": "https://github.com/engenai-platform/engenai-skills",
+  "source": "https://github.com/EnGen-AI/skills",
   "generated_at": "2026-03-05T22:11:50.312Z",
   "skills": [
     {
