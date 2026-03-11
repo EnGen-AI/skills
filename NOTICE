@@ -1,13 +1,18 @@
 EnGenAI Skills Marketplace
-Copyright 2026 EnGenAI (EnGen-AI)
+Copyright 2026 EnGenAI (https://engenai.app)
 
-This product includes software developed at EnGenAI (https://engenai.app).
+This repository is licensed under the Creative Commons Attribution 4.0
+International License (CC-BY-4.0). See LICENSE for the full text.
 
----
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
 
-This repository contains skills (SKILL.md files) contributed by the community
-under the Apache License 2.0. Each skill includes its own author and license
-declarations in the frontmatter.
+Attribution Requirements:
+When using or adapting skills from this repository, you must give
+appropriate credit to the original author as specified in each skill's
+attribution fields (attribution_author, attribution_url, attribution_notes).
 
-All contributions require a signed Contributor License Agreement (CLA).
-See CLA.md for details.
+Third-Party Skills:
+Some skills in this repository were contributed by community members or
+adapted from external repositories. Each skill's YAML frontmatter contains
+the original author's attribution. Please respect these attributions when
+redistributing or building upon these skills.
